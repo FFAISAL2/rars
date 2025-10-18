@@ -1,0 +1,22 @@
+# Faiyaz Faisal #Section 018
+.data
+msg: .asciz "The answer to life is 42"
+
+.text
+.globl main
+
+# Macro Definition
+.macro theanswertolife str
+    la a0, \str       # load address of string
+    li a7, 4          # ecall code 4 = print string
+    ecall
+    li a0, 10         # ASCII newline
+    li a7, 11         # ecall code 11 = print char
+    ecall
+.endm
+
+main:
+    theanswertolife msg   # call macro
+    li a0, 0
+    li a7, 10             # exit program
+    ecall
